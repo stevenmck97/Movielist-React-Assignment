@@ -39,11 +39,11 @@ export default ({ movie }) => {
                                 >
                                     Full Review
                   </Link>
-                            </td>       
+                            </td>
                         </tr>
                     );
                 })}
             </tbody>
         </table>
     );
-};
+}; 
