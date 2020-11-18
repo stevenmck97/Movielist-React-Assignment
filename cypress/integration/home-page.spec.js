@@ -7,8 +7,6 @@ const filterByTitle = (movieList, string) =>
 const filterByGenre = (movieList, genreId) =>
     movieList.filter((m) => m.genre_ids.includes(genreId));
 
-const filterByGenreAndTitle = (movieList, genreId, string) =>
-    movieList.filter((m) => m.genre_ids.includes(genreId, title).toLowerCase().search(string) !== -1); 
 
 describe("Home Page ", () => {
     before(() => {
@@ -29,7 +27,7 @@ describe("Home Page ", () => {
 
     describe("Base test", () => {
         it("displays page header", () => {
-            cy.get("h2").contains("No. Movies");
+            cy.get("h2").contains("Discover Movies");
             cy.get(".badge").contains(20);
         });
 
@@ -62,12 +60,7 @@ describe("Home Page ", () => {
                     const matchingMovies = filterByTitle(movies, searchString);
                     cy.get("input").clear().type(searchString);
                     cy.get(".card").should("have.length", matchingMovies.length);
-                    cy.get(".card").each(($card, index) => {
-                        cy.wrap($card)
-                            .find(".card-title")
-                            .should.shouldn("have.text", matchingMovies[index].title)
-                            .expect(matchingMovies.title.to.be.empty);
-                    })
+                    cy.get(".card").should('not.exist')
                 })
             })
             describe("By movie genre", () => {
@@ -87,8 +80,10 @@ describe("Home Page ", () => {
                     const searchString = "p";
                     const selectedGenreId = 35;
                     const selectedGenreText = "Comedy";
-                    const matchingMovies = filterByGenreAndTitle(movies, selectedGenreId, searchString);
-                    cy.get("select", "input").select(selectedGenreText).type(searchString);
+                    const matchingGenres = filterByGenre(movies, selectedGenreId);
+                    const matchingMovies = filterByTitle(matchingGenres, searchString)
+                    cy.get("input").clear().type(searchString);
+                    cy.get("select").select(selectedGenreText);
                     cy.get(".card").should("have.length", matchingMovies.length);
                     cy.get(".card").each(($card, index) => {
                         cy.wrap($card)
