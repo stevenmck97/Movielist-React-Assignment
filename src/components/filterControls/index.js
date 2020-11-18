@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "./filterControls.css";
-import { getGenres } from "../../api/tmdb-api";
+import { GenresContext } from '../../contexts/genresContext' 
 
 const FilterControls = props => {
-  const [genres, setGenres] = useState([{ id: '0', name: "All" }])
-
-  useEffect(() => {
-    getGenres().then(allGenres => {
-      setGenres([genres[0], ...allGenres]);
-    });
-  }, []);
+  const context = useContext(GenresContext);
 
   const handleChange = (e, type, value) => {
-    e.preventDefault()
-    props.onUserInput(type, value)   // NEW
-  }
+    e.preventDefault();
+    props.onUserInput(type, value);
+  };
   const handleTextChange = e => {
-    handleChange(e, "name", e.target.value)
-  }
+    handleChange(e, "name", e.target.value);
+  };
   const handleGenreChange = e => {
-    handleChange(e, "genre", e.target.value)
+    handleChange(e, "genre", e.target.value);
   };
 
   return (
@@ -32,8 +26,9 @@ const FilterControls = props => {
             placeholder="Title Search"
             onChange={handleTextChange}
           />
+          <span>Genre:</span>
           <select id="genre" onChange={handleGenreChange}>
-            {genres.map(genre => {
+            {context.genres.map(genre => {
               return (
                 <option key={genre.id} value={genre.id}>
                   {genre.name}
@@ -45,6 +40,6 @@ const FilterControls = props => {
       </div>
     </div>
   );
-}
+};
 
 export default FilterControls;
