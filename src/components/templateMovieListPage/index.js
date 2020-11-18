@@ -3,7 +3,7 @@ import Header from "../headerMovieList";
 import MovieList from "../movieList";
 import FilterControls from "../filterControls";
 
-const MovieListPageTemplate = ({movies, title, buttonHandler}) => {
+const MovieListPageTemplate = ({ movies, title, action }) => {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genre = Number(genreFilter)
@@ -12,7 +12,7 @@ const MovieListPageTemplate = ({movies, title, buttonHandler}) => {
       return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter(m => {
-      return  genre > 0
+      return genre > 0
         ? m.genre_ids.includes(Number(genreFilter))
         : true;
     });
@@ -25,13 +25,13 @@ const MovieListPageTemplate = ({movies, title, buttonHandler}) => {
   return (
     <>
       <Header title={title} numMovies={displayedMovies.length} />
-      <FilterControls onUserInput={handleChange} numMovies={displayedMovies.length}/>
+      <FilterControls onUserInput={handleChange} numMovies={displayedMovies.length} />
       <MovieList
-        buttonHandler={buttonHandler}
+        action={action}
         movies={displayedMovies}
       ></MovieList>
     </>
   );
 };
 
-export default MovieListPageTemplate ;
+export default MovieListPageTemplate;
