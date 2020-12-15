@@ -4,7 +4,6 @@ image: cypress/browsers:node12.0.0-chrome73
 stages:
    - install
    - build
-   - exercisetest
    - test
 
 # NEW
