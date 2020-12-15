@@ -31,6 +31,12 @@ install_dependencies:
 
 bundle_app:
   stage: build
+  only:
+    - staging
+    - main
+  artifacts:
+    paths:
+      - build/
   script:
     - npm run build
 
