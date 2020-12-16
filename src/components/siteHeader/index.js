@@ -72,6 +72,16 @@ const SiteHeader = () => {
               TV Watch List
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/person/popular">
+              Popular Actors
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/person/favorites">
+              Favorite Actors
+            </Link>
+          </li>
         </ul>
       </nav>
     </nav>

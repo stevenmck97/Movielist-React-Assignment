@@ -20,14 +20,14 @@ const TvPage = props => {
                             {!props.history.location.pathname.endsWith("/reviews") ? (
                                 <Link
                                     className="btn btn-primary btn-block active"
-                                    to={`/tvShows/${id}/reviews`}
+                                    to={`/tv/${id}/reviews`}
                                 >
                                     Show Reviews (Extracts)
                                 </Link>
                             ) : (
                                     <Link
                                         className="btn btn-primary btn-block active"
-                                        to={`/tvShows/${id}`}
+                                        to={`/tv/${id}`}
                                     >
                                         Hide Reviews
                                     </Link>
@@ -35,7 +35,7 @@ const TvPage = props => {
                         </div>
                     </div>
                     <Route
-                        path={`/tvShows/:id/reviews`}
+                        path={`/tv/:id/reviews`}
                         render={props => <TvReviews tv={tv} {...props} />}
                     />
                 </>
