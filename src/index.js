@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";    // CHANGED
+import { BrowserRouter, Route, Redirect, Switch} from "react-router-dom";    // CHANGED
 import FavoriteMoviesPage from './pages/favoritesMoviesPage';       // NEW
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import HomePage from "./pages/homePage";
@@ -17,6 +17,7 @@ import FavoriteTvShowsPage from './pages/tvFavoritesPage';
 import TvPage from './pages/tvDetailsPage';
 import TvListPage from './pages/tvDiscoverPage';
 import AiringTvShowsPage from './pages/tvAiringPage';
+import TopRatedTvShowsPage from './pages/tvTopRatedPage';
 import TvReviewPage from './pages/tvReviewPage';
 import TvShowsContextProvider from "./contexts/tvShowsContext";
 import TvGenresContextProvider from "./contexts/tvGenresContext";
@@ -41,6 +42,7 @@ const App = () => {
                     <Route exact path="/tv/favorites" component={FavoriteTvShowsPage} />       
                     <Route path="/movies/:id" component={MoviePage} />
                     <Route exact path="/tv/airing" component={AiringTvShowsPage} />
+                    <Route exact path="/tv/topRated" component={TopRatedTvShowsPage} />
                     <Route exact path="/tv/discover" component={TvListPage} />
                     <Route path="/tv/:id" component={TvPage} />
                 
