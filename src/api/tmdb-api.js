@@ -99,3 +99,4 @@ export const getPopularPeople = () => {
     .then(res => res.json())
     .then(json => json.results);
 };
+

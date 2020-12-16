@@ -42,11 +42,11 @@ const App = () => {
                   <PeopleContextProvider>
                     <Switch>
                       <Route exact path="/reviews/form" component={AddMovieReviewPage} />
+                      <Route path="/reviews/:id" component={MovieReviewPage} />
                       <Route exact path="/tvReviews/form" component={AddTvReviewPage} />
                       <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
                       <Route path="/movies/upcoming" component={UpcomingMoviesPage} />
                       <Route path="/movies/watchList" component={MovieWatchListPage} />
-                      <Route path="/tvReviews/:id" component={TvReviewPage} />
                       <Route exact path="/tv/favorites" component={FavoriteTvShowsPage} />
                       <Route exact path="/tv/watchList" component={TvWatchListPage} />
                       <Route exact path="/tv/airing" component={AiringTvShowsPage} />
@@ -55,6 +55,7 @@ const App = () => {
                       <Route exact path="/person/popular" component={PersonPopularPage} />
                       <Route exact path="/person/favorites" component={FavoritePeoplePage} />
                       <Route path="/reviews/:id" component={MovieReviewPage} />
+                      <Route path="/tvReviews/:id" component={TvReviewPage} />
                       <Route path="/movies/:id" component={MoviePage} />
                       <Route path="/tv/:id" component={TvPage} />
                       <Route path="/person/:id" component={PersonPage} />
