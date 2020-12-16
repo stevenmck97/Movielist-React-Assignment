@@ -1,28 +1,28 @@
 import React, { useEffect, createContext, useReducer } from "react";
-import { getTvShows, getLatestTvShows} from "../api/tmdb-api";
+import { getTvShows, getAiringTvShows} from "../api/tmdb-api";
 
 export const TvShowsContext = createContext(null);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "add-favoriteTvShow":
+    case "add-favorite":
       return {
         tvShows: state.tvShows.map((t) =>
           t.id === action.payload.tv.id ? { ...t, favorite: true } : t
         ),
-        latest: [...state.latest],
+        airing: [...state.airing],
       };
     case "add-watchList":
       return {
-        latest: state.latest.map((t) =>
+        airing: state.airing.map((t) =>
           t.id === action.payload.tv.id ? { ...t, watchList: true } : t
         ),
-        tvShows: [...state.latest],
+        tvShows: [...state.airing],
       };
     case "load":
-      return { tvShows: action.payload.tvShows, latest: [...state.latest] };
-    case "load-latest":
-      return { latest: action.payload.tvShows, tvShows: [...state.tvShows] };
+      return { tvShows: action.payload.tvShows, airing: [...state.airing] };
+    case "load-airing":
+      return { airing: action.payload.tvShows, tvShows: [...state.tvShows] };
     case "add-review":
       return {
         tvShows: state.tvShows.map((t) =>
@@ -30,7 +30,7 @@ const reducer = (state, action) => {
             ? { ...t, review: action.payload.review }
             : t
         ),
-        latest: [...state.latest],
+        airing: [...state.airing],
       };
     default:
       return state;
@@ -38,7 +38,7 @@ const reducer = (state, action) => {
 };
 
 const TvShowsContextProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer, { tvShows: [], latest: [] });
+  const [state, dispatch] = useReducer(reducer, { tvShows: [], airing: [] });
 
   const addToFavorites = (tvShowId) => {
     const index = state.tvShows.map((t) => t.id).indexOf(tvShowId);
@@ -46,8 +46,8 @@ const TvShowsContextProvider = (props) => {
   };
 
   const addToWatchList = (tvShowId) => {
-    const index = state.latest.map((t) => t.id).indexOf(tvShowId);
-    dispatch({ type: "add-watchList", payload: { tv: state.latest[index] } });
+    const index = state.airing.map((t) => t.id).indexOf(tvShowId);
+    dispatch({ type: "add-watchList", payload: { tv: state.airing[index] } });
   };
 
   const addReview = (tv, review) => {
@@ -62,8 +62,8 @@ const TvShowsContextProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    getLatestTvShows().then((tvShows) => {
-      dispatch({ type: "load-upcoming", payload: { tvShows } });
+    getAiringTvShows().then((tvShows) => {
+      dispatch({ type: "load-airing", payload: { tvShows } });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,7 +72,7 @@ const TvShowsContextProvider = (props) => {
     <TvShowsContext.Provider
       value={{
         tvShows: state.tvShows,
-        latest: state.latest,
+        airing: state.airing,
         addToFavorites: addToFavorites,
         addReview: addReview,
         addToWatchList: addToWatchList,

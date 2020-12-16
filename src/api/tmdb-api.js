@@ -40,7 +40,7 @@ export const getUpcomingMovies = () => {
 
 export const getTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false`
   )
     .then(res => res.json())
     .then(json => json.results);
@@ -52,9 +52,27 @@ export const getTv = id => {
   ).then(res => res.json());
 };
 
-export const getLatestTvShows = () => {
+export const getAiringTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/latest?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+  )
+    .then(res => res.json())
+    .then(json => json.results);
+};
+
+export const getTvGenres = () => {
+  return fetch(
+    "https://api.themoviedb.org/3/genre/tv/list?api_key=" +
+    process.env.REACT_APP_TMDB_KEY +
+    "&language=en-US"
+  )
+    .then(res => res.json())
+    .then(json => json.genres);
+};
+
+export const getTvReviews = id => {
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
   )
     .then(res => res.json())
     .then(json => json.results);
