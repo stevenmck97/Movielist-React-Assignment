@@ -11,6 +11,7 @@ import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
+import MovieWatchListPage from './pages/movieWatchListPage';
 //tv pages
 import AddTvReviewPage from './pages/addTvReviewPage';
 import FavoriteTvShowsPage from './pages/tvFavoritesPage';
@@ -19,6 +20,7 @@ import TvListPage from './pages/tvDiscoverPage';
 import AiringTvShowsPage from './pages/tvAiringPage';
 import TopRatedTvShowsPage from './pages/tvTopRatedPage';
 import TvReviewPage from './pages/tvReviewPage';
+import TvWatchListPage from './pages/tvWatchListPage';
 import TvShowsContextProvider from "./contexts/tvShowsContext";
 import TvGenresContextProvider from "./contexts/tvGenresContext";
 
@@ -38,9 +40,11 @@ const App = () => {
                     <Route path="/reviews/:id" component={MovieReviewPage} />
                     <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
                     <Route path="/movies/upcoming" component={UpcomingMoviesPage} />
+                    <Route path="/movies/watchList" component={MovieWatchListPage} />
                     <Route path="/tvReviews/:id" component={TvReviewPage} />
                     <Route exact path="/tv/favorites" component={FavoriteTvShowsPage} />       
                     <Route path="/movies/:id" component={MoviePage} />
+                    <Route exact path="/tv/watchList" component={TvWatchListPage} />
                     <Route exact path="/tv/airing" component={AiringTvShowsPage} />
                     <Route exact path="/tv/topRated" component={TopRatedTvShowsPage} />
                     <Route exact path="/tv/discover" component={TvListPage} />
