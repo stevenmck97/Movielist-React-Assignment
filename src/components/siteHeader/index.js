@@ -1,8 +1,10 @@
 import React from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
+
 
 const SiteHeader = () => {
   return (
@@ -27,61 +29,42 @@ const SiteHeader = () => {
       />
       <nav className="navbar navbar-expand ">
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/upcoming">
-              Upcoming
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/watchList">
-              Movies Watch List
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tv/discover">
-              Discover TV 
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tv/airing">
-              Airing TV
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tv/topRated">
-              Top Rated TV
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tv/favorites">
-              Favorite TV
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tv/watchList">
-              TV Watch List
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/person/popular">
-              Popular Actors
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/person/favorites">
-              Favorite Actors
-            </Link>
-          </li>
+
+          <Dropdown className="btn-header">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              Movies
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/">Discover Movies </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/movies/upcoming">Upcoming Movies </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/movies/favorites">Favorite Movies </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/movies/watchList">Watchlist Movies </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Dropdown className="btn-header">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              TV Shows
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/tv/discover">Discover TV Shows </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/tv/airing">Airing TV Shows </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/tv/topRated">Top Rated TV Shows </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/tv/favorites">Favorite TV Shows </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/tv/watchList">Watchlist TV Shows </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Dropdown className="btn-header">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              Actors
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/person/popular">Popular Actors </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/person/favorites">Favorite Actors </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
         </ul>
       </nav>
     </nav>

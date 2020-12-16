@@ -2,3 +2,13 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+.btn-header {
+    background-color:transparent;
+    border-color:transparent;
+}
+
+.btn-header:hover {
+    background-color:transparent;
+    border-color: transparent;
+}
