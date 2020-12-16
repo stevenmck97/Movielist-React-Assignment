@@ -43,7 +43,7 @@ const SiteHeader = () => {
           </Dropdown>
 
           <Dropdown className="btn-header">
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic2">
               TV Shows
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -56,7 +56,7 @@ const SiteHeader = () => {
           </Dropdown>
 
           <Dropdown className="btn-header">
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic3">
               Actors
             </Dropdown.Toggle>
             <Dropdown.Menu>

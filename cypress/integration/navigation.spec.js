@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let movies;
 const movieId = 497582; // Enola Holmes movie id
 let reviews;
