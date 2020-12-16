@@ -9,7 +9,7 @@ const PersonCard = ({person, action}) => {
   return (
     <div className="col-sm-3">
       <div className="card  bg-white">
-      <Link to={`/popular/${person.id}`}>
+      <Link to={`/person/${person.id}`}>
         <img
           className="card-img-tag center "
           alt={person.name}

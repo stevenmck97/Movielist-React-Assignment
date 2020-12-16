@@ -13,9 +13,7 @@ const PersonPage = props => {
                 <>
                     <PageTemplate person={person}>
                         <PersonDetails person={person} />
-                    </PageTemplate>
-                 
-                            ) : (                    
+                    </PageTemplate>                   
                 </>
             ) : (
                     <p>Waiting for person details</p>
