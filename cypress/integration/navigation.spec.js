@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 let movies;
 const movieId = 497582; // Enola Holmes movie id
+const tvId = 71712; // The Good Doctor tv id
 let reviews;
 
 describe("Navigation", () => {
@@ -29,7 +30,7 @@ describe("Navigation", () => {
     describe("From the home page", () => {
         beforeEach(() => {
             cy.visit("/");
-            cy.wait(20000)
+            cy.wait(2000)
         });
         it("should navigate to the movie details page and change browser URL", () => {
             cy.get(".card").eq(1).find("img").click();
@@ -88,7 +89,7 @@ describe("Navigation", () => {
         describe("From the Movie Details page ", () => {
             beforeEach(() => {
                 cy.visit(`/movies/${movieId}`);
-                cy.wait(20000)
+                cy.wait(2000)
             });
             it("should change browser URL when show/hide reviews is clicked", () => {
                 cy.contains("Show Reviews").click();
@@ -103,10 +104,30 @@ describe("Navigation", () => {
                 cy.url().should("include", `/reviews`);
             });
         });
+
+        describe("From the TV Show Details page ", () => {
+            beforeEach(() => {
+                cy.visit(`/tv/${tvId}`);
+                cy.wait(2000)
+            });
+            it("should change browser URL when show/hide reviews is clicked", () => {
+                cy.contains("Show Reviews").click();
+                cy.url().should("include", `/tv/${tvId}/reviews`);
+                cy.contains("Hide Reviews").click();
+                cy.url().should("not.include", `/tv/${tvId}/reviews`);
+            });
+            // it("navigate to the full review page when a 'Full Review' link is clicked", () => {
+            //     cy.contains("Show Reviews").click();
+            //     cy.url().should("include", `/tv/${tvId}/reviews`);
+            //     cy.get("tbody").find("a").eq(0).click();
+            //     cy.url().should("include", `/reviews`);
+            // });
+        });
+
         describe("From the Favorites page", () => {
             beforeEach(() => {
                 cy.visit("/");
-                cy.wait(20000)
+                cy.wait(2000)
                 cy.get(".card").eq(0).find("button").click();
                 cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Favorite Movies").click();
             });
@@ -120,7 +141,7 @@ describe("Navigation", () => {
         describe("The Go Back button", () => {
             beforeEach(() => {
                 cy.visit("/");
-                cy.wait(20000)
+                cy.wait(2000)
             });
             it("should navigate from home page to movie details and back", () => {
                 cy.get(".card").eq(1).find("img").click();
