@@ -26,11 +26,14 @@ describe("Upcoming Page ", () => {
         cy.visit("/")
         cy.wait(2000);
         cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Upcoming Movies").click();
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
         it("displays page header", () => {
+            cy.wait(2000);
             cy.get("h2").contains("Upcoming Movies");
+            cy.wait(2000);
             cy.get(".badge").contains(20);
         });
 

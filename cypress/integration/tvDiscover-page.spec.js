@@ -26,11 +26,14 @@ describe("Discover TV Page ", () => {
         cy.visit("/")
         cy.wait(2000);
         cy.get("button").contains("TV Shows").get("#dropdown-basic2").click().get(".dropdown-item").contains("Discover TV Shows").click();
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
         it("displays page header", () => {
+            cy.wait(2000);
             cy.get("h2").contains("Discover Tv Shows");
+            cy.wait(2000);
             cy.get(".badge").contains(20);
         });
 

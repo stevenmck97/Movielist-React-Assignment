@@ -22,11 +22,14 @@ describe("Popular Actors page ", () => {
         cy.visit("/")
         cy.wait(2000);
         cy.get("button").contains("Actors").get("#dropdown-basic3").click().get(".dropdown-item").contains("Popular Actors").click();
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
         it("displays page header", () => {
+            cy.wait(2000);
             cy.get("h2").contains("Popular Actors");
+            cy.wait(2000);
             cy.get(".badge").contains(20);
         });
 

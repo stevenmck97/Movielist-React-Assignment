@@ -26,11 +26,14 @@ describe("Airing TV Page ", () => {
         cy.visit("/")
         cy.wait(2000);
         cy.get("button").contains("TV Shows").get("#dropdown-basic2").click().get(".dropdown-item").contains("Airing TV Shows").click();
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
         it("displays page header", () => {
+            cy.wait(2000);
             cy.get("h2").contains("Airing Tv Shows");
+            cy.wait(2000);
             cy.get(".badge").contains(20);
         });
 
