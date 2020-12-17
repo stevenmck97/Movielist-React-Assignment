@@ -29,7 +29,7 @@ describe("Navigation", () => {
     describe("From the home page", () => {
         beforeEach(() => {
             cy.visit("/");
-            cy.wait(6000)
+            cy.wait(20000)
         });
         it("should navigate to the movie details page and change browser URL", () => {
             cy.get(".card").eq(1).find("img").click();
@@ -88,7 +88,7 @@ describe("Navigation", () => {
         describe("From the Movie Details page ", () => {
             beforeEach(() => {
                 cy.visit(`/movies/${movieId}`);
-                cy.wait(6000)
+                cy.wait(20000)
             });
             it("should change browser URL when show/hide reviews is clicked", () => {
                 cy.contains("Show Reviews").click();
@@ -106,7 +106,7 @@ describe("Navigation", () => {
         describe("From the Favorites page", () => {
             beforeEach(() => {
                 cy.visit("/");
-                cy.wait(6000)
+                cy.wait(20000)
                 cy.get(".card").eq(0).find("button").click();
                 cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Favorite Movies").click();
             });
@@ -120,7 +120,7 @@ describe("Navigation", () => {
         describe("The Go Back button", () => {
             beforeEach(() => {
                 cy.visit("/");
-                cy.wait(6000)
+                cy.wait(20000)
             });
             it("should navigate from home page to movie details and back", () => {
                 cy.get(".card").eq(1).find("img").click();
@@ -138,7 +138,6 @@ describe("Navigation", () => {
             });
         });
     });
-
 });
 
 
