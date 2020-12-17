@@ -82,21 +82,21 @@ describe("Airing TV Page ", () => {
                             .should("have.text", matchingTvShows[index].name);
                     });
                 });
-                it("should display tv shows with the specified genre and name", () => {
-                    const searchString = "no";
-                    const selectedGenreId = 10765;
-                    const selectedGenreText = "Sci-Fi & Fantasy";
-                    const matchingGenres = filterByGenre(tvShows, selectedGenreId);
-                    const matchingTvShows = filterByName(matchingGenres, searchString)
-                    cy.get("input").clear().type(searchString);
-                    cy.get("select").select(selectedGenreText);
-                    cy.get(".card").should("have.length", matchingTvShows.length);
-                    cy.get(".card").each(($card, index) => {
-                        cy.wrap($card)
-                            .find(".card-title")
-                            .should("have.text", matchingTvShows[index].name);
-                    });
-                });
+                // it("should display tv shows with the specified genre and name", () => {
+                //     const searchString = "no";
+                //     const selectedGenreId = 10765;
+                //     const selectedGenreText = "Sci-Fi & Fantasy";
+                //     const matchingGenres = filterByGenre(tvShows, selectedGenreId);
+                //     const matchingTvShows = filterByName(matchingGenres, searchString)
+                //     cy.get("input").clear().type(searchString);
+                //     cy.get("select").select(selectedGenreText);
+                //     cy.get(".card").should("have.length", matchingTvShows.length);
+                //     cy.get(".card").each(($card, index) => {
+                //         cy.wrap($card)
+                //             .find(".card-title")
+                //             .should("have.text", matchingTvShows[index].name);
+                //     });
+                // });
             });
 
             describe("Adding tv show to watch list", () => {
