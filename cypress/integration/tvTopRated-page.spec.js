@@ -2,11 +2,11 @@
 let tvShows;    // List of tv shows from TMDB
 
 // Utility functions
-const filterByTitle = (tvList, string) =>
-    tvList.filter((t) => t.name.toLowerCase().search(string) !== -1);
+const filterByName = (tvList, string) =>
+    tvList.filter((m) => m.name.toLowerCase().search(string) !== -1);
 
 const filterByGenre = (tvList, genreId) =>
-    tvList.filter((t) => t.genre_ids.includes(genreId));
+    tvList.filter((m) => m.genre_ids.includes(genreId));
 
 
 describe("Top Rated TV Page ", () => {
@@ -41,7 +41,7 @@ describe("Top Rated TV Page ", () => {
             describe("By tv show title", () => {
                 it("should display tv shows with 'p ' in the title", () => {
                     const searchString = 'p'
-                    const matchingTvShows = filterByTitle(tvShows, searchString);
+                    const matchingTvShows = filterByName(tvShows, searchString);
                     cy.get("input").clear().type(searchString);
                     cy.get(".card").should("have.length", matchingTvShows.length);
                     cy.get(".card").each(($card, index) => {
@@ -50,9 +50,9 @@ describe("Top Rated TV Page ", () => {
                             .should("have.text", matchingTvShows[index].name);
                     });
                 })
-                it("should display tv shows with 'o' in the title", () => {
-                    const searchString = "o";
-                    const matchingTvShows = filterByTitle(tvShows, searchString);
+                it("should display tv shows with 'ob' in the title", () => {
+                    const searchString = "ob";
+                    const matchingTvShows = filterByName(tvShows, searchString);
                     cy.get("input").clear().type(searchString);
                     cy.get(".card").should("have.length", matchingTvShows.length);
                     cy.get(".card").each(($card, index) => {
@@ -63,7 +63,7 @@ describe("Top Rated TV Page ", () => {
                 })
                 it("should display tv shows with 'xyz' in the title", () => {
                     const searchString = "xyz";
-                    const matchingTvShows = filterByTitle(tvShows, searchString);
+                    const matchingTvShows = filterByName(tvShows, searchString);
                     cy.get("input").clear().type(searchString);
                     cy.get(".card").should("have.length", matchingTvShows.length);
                     cy.get(".card").should('not.exist')
@@ -72,7 +72,7 @@ describe("Top Rated TV Page ", () => {
             describe("By tv show genre", () => {
                 it("should display tv shows with the specified genre only", () => {
                     const selectedGenreId = 35;
-                    const selectedGenreText = "Comedy";
+                    const selectedGenreText = "Drama";
                     const matchingTvShows = filterByGenre(tvShows, selectedGenreId);
                     cy.get("select").select(selectedGenreText);
                     cy.get(".card").should("have.length", matchingTvShows.length);
@@ -83,11 +83,11 @@ describe("Top Rated TV Page ", () => {
                     });
                 });
                 it("should display tv shows with the specified genre and name", () => {
-                    const searchString = "o";
+                    const searchString = "ou";
                     const selectedGenreId = 35;
                     const selectedGenreText = "Comedy";
                     const matchingGenres = filterByGenre(tvShows, selectedGenreId);
-                    const matchingTvShows = filterByTitle(matchingGenres, searchString)
+                    const matchingTvShows = filterByName(matchingGenres, searchString)
                     cy.get("input").clear().type(searchString);
                     cy.get("select").select(selectedGenreText);
                     cy.get(".card").should("have.length", matchingTvShows.length);
