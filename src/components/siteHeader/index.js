@@ -20,7 +20,7 @@ const SiteHeader = () => {
         size="3x"
       />
       <span className="navbar-text text-light">
-        For the movie enthusiast !!
+        For All The Entertainment Enthusiasts
       </span>
       <FontAwesomeIcon
         className="navbar-text text-light"
