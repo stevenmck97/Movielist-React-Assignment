@@ -13,8 +13,8 @@ describe("TV Details Page", () => {
             .then((response) => {
                 return response.results[2].id;
             })
-            .then((arbitraryMovieIdignored) => {
-                tvId = arbitraryMovieIdignored
+            .then((arbitraryTvIdignored) => {
+                tvId = arbitraryTvIdignored
                 return cy
                     .request(
                         `https://api.themoviedb.org/3/tv/${tvId}?api_key=${Cypress.env(
