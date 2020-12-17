@@ -47,6 +47,11 @@ describe("Movie Details Page", () => {
                 cy.get("li").eq(1).contains(movie.runtime);
                 cy.get("li").eq(2).contains("Release Date");
                 cy.get("li").eq(3).contains(movie.release_date);
+                // cy.get("li").each(($li, movie) => {
+                //     cy.wrap($li)
+                //         .find("Genres")
+                //         .should("have.text", movie.genre);
+                // });
             });
     });
     it("should display the Home icon with the correct URL value", () => {
