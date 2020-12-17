@@ -71,8 +71,8 @@ describe("Top Rated TV Page ", () => {
             })
             describe("By tv show genre", () => {
                 it("should display tv shows with the specified genre only", () => {
-                    const selectedGenreId = 35;
-                    const selectedGenreText = "Drama";
+                    const selectedGenreId = 10765;
+                    const selectedGenreText = "Sci-Fi & Fantasy";
                     const matchingTvShows = filterByGenre(tvShows, selectedGenreId);
                     cy.get("select").select(selectedGenreText);
                     cy.get(".card").should("have.length", matchingTvShows.length);
@@ -83,9 +83,9 @@ describe("Top Rated TV Page ", () => {
                     });
                 });
                 it("should display tv shows with the specified genre and name", () => {
-                    const searchString = "ou";
-                    const selectedGenreId = 35;
-                    const selectedGenreText = "Comedy";
+                    const searchString = "o";
+                    const selectedGenreId = 10765;
+                    const selectedGenreText = "Sci-Fi & Fantasy";
                     const matchingGenres = filterByGenre(tvShows, selectedGenreId);
                     const matchingTvShows = filterByName(matchingGenres, searchString)
                     cy.get("input").clear().type(searchString);

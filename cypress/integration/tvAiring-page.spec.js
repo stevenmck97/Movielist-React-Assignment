@@ -71,8 +71,8 @@ describe("Airing TV Page ", () => {
             })
             describe("By tv show genre", () => {
                 it("should display tv shows with the specified genre only", () => {
-                    const selectedGenreId = 35;
-                    const selectedGenreText = "Drama";
+                    const selectedGenreId = 10765;
+                    const selectedGenreText = "Sci-Fi & Fantasy";
                     const matchingTvShows = filterByGenre(tvShows, selectedGenreId);
                     cy.get("select").select(selectedGenreText);
                     cy.get(".card").should("have.length", matchingTvShows.length);
