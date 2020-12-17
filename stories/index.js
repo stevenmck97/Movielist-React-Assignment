@@ -1,6 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+//movie imports
 import MovieCard from "../src/components/movieCard";
 import FilterControls from "../src/components/filterControls";
 import MoviesHeader from "../src/components/headerMovieList";
@@ -8,8 +10,18 @@ import MovieList from "../src/components/movieList";
 import MovieDetails from "../src/components/movieDetails";
 import MovieHeader from "../src/components/headerMovie";
 import AddFavoriteButton from "../src/components/buttons/addToFavorites";
-import { MemoryRouter } from "react-router";
 import GenresContextProvider from "../src/contexts/genresContext";
+
+//tv imports
+import TvCard from "../src/components/tvCard";
+import TvShowHeader from "../src/components/headerTvList";
+import TvList from "../src/components/tvList";
+import TvDetails from "../src/components/tvDetails";
+import TvHeader from "../src/components/headerTv";
+// import AddFavoriteButton from "../src/components/buttons/addToFavorites";
+import TvGenresContextProvider from "../src/contexts/genresContext";
+
+import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
 
 const movieSample = {
@@ -305,6 +317,7 @@ const tvSample = {
   "vote_count": 11504
 }
 
+//home page
 storiesOf("Home Page/MovieCard", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
@@ -364,3 +377,66 @@ storiesOf("Movie Details Page/MovieHeader", module)
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => <MovieHeader movie={movieSample} />);
+
+
+
+  //tv pages
+storiesOf("Discover Page/TvCard", module)
+.addDecorator(story => (
+  <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+))
+.add("default", () => (
+  <TvCard
+    tv={tvSample}
+    action={tv => <button className="btn w-100 btn-primary">Test</button>}
+  />
+))
+.add("exception", () => {
+  const tvSampleNoPoster = { ...tvSample, poster_path: undefined };
+  return (
+    <TvCard
+      tv={tvSampleNoPoster}
+      action={tv => (
+        <button className="btn w-100 btn-primary">Test</button>
+      )}
+    />
+  );
+});
+
+storiesOf("Discover Page/FilterControls", module)
+  .addDecorator(story => (
+    <TvGenresContextProvider>{story()}</TvGenresContextProvider>
+  ))
+  .add("default", () => (
+    <FilterControls onUserInput={action("button-click")} numTvShows={10} />
+  ));
+
+storiesOf("Discover Page/TvHeader", module).add("default", () => (
+  <TvShowHeader name="All Tv Shows" numTvShows={10} />
+));
+
+storiesOf("Discover Page/TvList", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => {
+    const tvShows = [tvSample, tvSample, tvSample, tvSample, tvSample];
+    return (
+      <TvList
+      tvShows={tvShows}
+        action={tv => (
+          <button className="btn w-100 btn-primary">Test</button>
+        )}
+      />
+    );
+  });
+
+storiesOf("Tv Details Page/TvDetails", module).add("default", () => (
+  <TvDetails tv={tvSample} />
+));
+
+storiesOf("Tv Details Page/TvHeader", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => <TvHeader tv={tvSample} />);
