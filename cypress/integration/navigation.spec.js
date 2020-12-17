@@ -74,6 +74,15 @@ describe("Navigation", () => {
             cy.url().should("include", `tv/discover`);
             cy.get("h2").contains("Discover Tv Shows");
         });
+        it("should allow navigation from site header to Actors dropdown pages", () => {
+            cy.get("button").contains("Actors").get("#dropdown-basic3").click().get(".dropdown-item").contains("Popular Actors").click();
+            cy.url().should("include", `person/popular`);
+            cy.get("h2").contains("Popular Actors");
+
+            cy.get("button").contains("Actors").get("#dropdown-basic3").click().get(".dropdown-item").contains("Favorite Actors").click();
+            cy.url().should("include", `person/favorites`);
+            cy.get("h2").contains("Favorite Actors");
+        });
      
 
         describe("From the Movie Details page ", () => {
