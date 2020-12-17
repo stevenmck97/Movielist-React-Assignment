@@ -112,18 +112,18 @@ describe("Navigation", () => {
 
         describe("From the Movie Details page ", () => {
             beforeEach(() => {
-                cy.visit(`/movies/${movies[0].id}`);
+                cy.visit(`/movies/${movieId}`);
                 cy.wait(2000)
             });
             it("should change browser URL when show/hide reviews is clicked", () => {
                 cy.contains("Show Reviews").click();
-                cy.url().should("include", `/movies/${movies[0].id}/reviews`);
+                cy.url().should("include", `/movies/${movieId}/reviews`);
                 cy.contains("Hide Reviews").click();
-                cy.url().should("not.include", `/movies/${movies[0].id}/reviews`);
+                cy.url().should("not.include", `/movies/${movieId}/reviews`);
             });
             it("navigate to the full review page when a 'Full Review' link is clicked", () => {
                 cy.contains("Show Reviews").click();
-                cy.url().should("include", `/movies/${movies[0].id}/reviews`);
+                cy.url().should("include", `/movies/${movieId}/reviews`);
                 cy.get("tbody").find("a").eq(0).click();
                 cy.url().should("include", `/reviews`);
             });
@@ -172,7 +172,7 @@ describe("Navigation", () => {
                 cy.get(".card").eq(0).find("button").click();
                 cy.get("button").contains("TV Shows").get("#dropdown-basic2").click().get(".dropdown-item").contains("Favorite TV Shows").click();
             });
-            it("should navigate to the movies detail page and change the browser URL", () => {
+            it("should navigate to the tv details page and change the browser URL", () => {
                 cy.get(".card").eq(0).find("img").click();
                 cy.wait(2000)
                 cy.url().should("include", `/tv/${tvShows[0].id}`);
