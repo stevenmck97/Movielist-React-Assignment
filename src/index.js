@@ -47,7 +47,6 @@ const App = () => {
                     <PeopleContextProvider>
                       <Switch>
                         <Route exact path="/reviews/form" component={AddMovieReviewPage} />
-                        <Route path="/reviews/:id" component={MovieReviewPage} />
                         <Route exact path="/tvReviews/form" component={AddTvReviewPage} />
                         <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
                         <Route path="/movies/upcoming" component={UpcomingMoviesPage} />

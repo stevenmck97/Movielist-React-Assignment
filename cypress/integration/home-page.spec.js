@@ -24,6 +24,7 @@ describe("Home Page ", () => {
     })
     beforeEach(() => {
         cy.visit("/")
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
@@ -77,21 +78,21 @@ describe("Home Page ", () => {
                             .should("have.text", matchingMovies[index].title);
                     });
                 });
-                // it("should display movies with the specified genre and title", () => {
-                //     const searchString = "p";
-                //     const selectedGenreId = 35;
-                //     const selectedGenreText = "Comedy";
-                //     const matchingGenres = filterByGenre(movies, selectedGenreId);
-                //     const matchingMovies = filterByTitle(matchingGenres, searchString)
-                //     cy.get("input").clear().type(searchString);
-                //     cy.get("select").select(selectedGenreText);
-                //     cy.get(".card").should("have.length", matchingMovies.length);
-                //     cy.get(".card").each(($card, index) => {
-                //         cy.wrap($card)
-                //             .find(".card-title")
-                //             .should("have.text", matchingMovies[index].title);
-                //     });
-                // });
+                it("should display movies with the specified genre and title", () => {
+                    const searchString = "o";
+                    const selectedGenreId = 35;
+                    const selectedGenreText = "Comedy";
+                    const matchingGenres = filterByGenre(movies, selectedGenreId);
+                    const matchingMovies = filterByTitle(matchingGenres, searchString)
+                    cy.get("input").clear().type(searchString);
+                    cy.get("select").select(selectedGenreText);
+                    cy.get(".card").should("have.length", matchingMovies.length);
+                    cy.get(".card").each(($card, index) => {
+                        cy.wrap($card)
+                            .find(".card-title")
+                            .should("have.text", matchingMovies[index].title);
+                    });
+                });
             });
 
             describe("Adding movie to favourites", () => {
@@ -100,7 +101,6 @@ describe("Home Page ", () => {
                     cy.get(".card").eq(1).get("button").contains("Add to Favorites").click();
                     cy.get(".card").eq(2).get("button").contains("Add to Favorites").click();
                     cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Favorite Movies").click();
-                    cy.wait(200)
                     cy.get(".badge").contains(3);
                 });
             });
