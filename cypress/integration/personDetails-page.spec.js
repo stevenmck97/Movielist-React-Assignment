@@ -2,7 +2,7 @@
 let personId = null
 let person;
 
-describe("TV Details Page", () => {
+describe("Actor Details Page", () => {
     before(() => {
         cy.request(
             `https://api.themoviedb.org/3/person/popular?api_key=${Cypress.env(
