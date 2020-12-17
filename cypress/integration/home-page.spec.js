@@ -24,6 +24,7 @@ describe("Home Page ", () => {
     })
     beforeEach(() => {
         cy.visit("/")
+        cy.wait(2000);
     });
 
     describe("Base test", () => {
@@ -100,7 +101,6 @@ describe("Home Page ", () => {
                     cy.get(".card").eq(1).get("button").contains("Add to Favorites").click();
                     cy.get(".card").eq(2).get("button").contains("Add to Favorites").click();
                     cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Favorite Movies").click();
-                    cy.wait(200)
                     cy.get(".badge").contains(3);
                 });
             });
