@@ -84,8 +84,8 @@ describe("Airing TV Page ", () => {
                 });
                 it("should display tv shows with the specified genre and name", () => {
                     const searchString = "no";
-                    const selectedGenreId = 35;
-                    const selectedGenreText = "Drama";
+                    const selectedGenreId = 10765;
+                    const selectedGenreText = "Sci-Fi & Fantasy";
                     const matchingGenres = filterByGenre(tvShows, selectedGenreId);
                     const matchingTvShows = filterByName(matchingGenres, searchString)
                     cy.get("input").clear().type(searchString);
