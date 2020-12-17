@@ -112,6 +112,8 @@ describe("Navigation", () => {
 
         describe("From the Movie Details page ", () => {
             beforeEach(() => {
+                cy.get("button").contains("Movies").get("#dropdown-basic").click().get(".dropdown-item").contains("Discover Movies").click();
+                cy.wait(2000);
                 cy.visit(`/movies/${movieId}`);
                 cy.wait(2000)
             });
