@@ -131,23 +131,22 @@ describe("Navigation", () => {
 
         describe("From the TV Show Details page ", () => {
             beforeEach(() => {
-                cy.visit(`/tv/${tvId}`);
+                cy.visit(`/tv/${tvShows[0].id}`);
                 cy.wait(2000)
             });
             it("should change browser URL when show/hide reviews is clicked", () => {
                 cy.contains("Show Reviews").click();
-                // cy.url().should("include", `/tv/${tvId}/reviews`);
-                cy.url().should("include", `/reviews`);
+                cy.url().should("include", `/tv/${tvShows[0].id}/reviews`);
                 cy.contains("Hide Reviews").click();
-                // cy.url().should("not.include", `/tv/${tvId}/reviews`);
-                cy.url().should("not.include", `/reviews`);
+                cy.url().should("not.include", `/tv/${tvShows[0].id}/reviews`);
+                
             });
-            // it("navigate to the full review page when a 'Full Review' link is clicked", () => {
-            //     cy.contains("Show Reviews").click();
-            //     cy.url().should("include", `/tv/${tvId}/reviews`);
-            //     cy.get("tbody").find("a").eq(0).click();
-            //     cy.url().should("include", `/reviews`);
-            // });
+            it("navigate to the full review page when a 'Full Review' link is clicked", () => {
+                cy.contains("Show Reviews").click();
+                cy.url().should("include", `/tv/${tvShows[0].id}/reviews`);
+                cy.get("tbody").find("a").eq(0).click();
+                cy.url().should("include", `/tvReviews`);
+            });
         });
 
         describe("From the Favorites page", () => {
