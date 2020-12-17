@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 let movieId = null
 let movie;
+// eslint-disable-next-line no-unused-vars
 let reviews;
 describe("Movie Details Page", () => {
     before(() => {
